@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Search</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		.col-md-3>div {
+			background: red;
+			margin:20px;
+			height: 10vh;
+		}
+		.row{
+			margin:10px;
+			text-transform: capitalize;
+		}
+	</style>
+</head>
+
+<body onload="newLocal();">
+<div class="hi">
+	<input type="text" id="input" nkeyup="Search();">
+	<button>Next</button>
+</div>
+	
+	
+	<div class="row" id="row">
+
+	</div>
+	<script>
+		function Search(){
+			var input=document.getElementById("input").value.toLowerCase();
+			//var element=document.getElementsByClassName("col-md-3");
+			//var inside=element[0].document.getElementsByTagName("div")[0];
+			//console.log(element[0]);
+			var element=document.getElementsByTagName("h4");
+			//if(input != '')
+			console.log(8);
+			for(i=0;i<element.length;i++){
+				//console.log(8);
+				var str=element[i].textContent.toLowerCase();
+				var a=str.indexOf(input);
+				if(a>-1)
+				element[i].parentElement.parentElement.style.display='';
+				else
+					element[i].parentElement.parentElement.style.display='none';
+					//console.log(element[i].textContent);
+			}
+			
+		}
+		function newLocal() {
+
+			const url = "https://emoji-api.com/emojis?access_key=22386c480db6cb702c2900ac4496f76fb3617996";
+
+			fetch(url)
+				.then((res) => {
+					return res.json();
+				})
+				.then((data) => {
+					for (i = 0; i < 1533; i++) {
+						var main_element=document.createElement("div");
+						main_element.className="text-center col-md-3 col-sm-4 col-xs-6";
+						
+						var element = document.createElement("div");
+						main_element.appendChild(element);
+						var title = document.createElement("h4");
+						var main = document.createElement("h1");
+						element.appendChild(title);
+						element.appendChild(main);
+						var txt_1 = document.createTextNode(data[i].slug);
+						title.appendChild(txt_1);
+						var txt_2 = document.createTextNode(data[i].character);
+						main.appendChild(txt_2);
+						//var txt_3=document.createTextNode(data[0].subGroup);
+						element.className = data[i].subGroup;
+						var a=document.getElementById("row");
+						a.appendChild(main_element);
+						//element.className=
+						//console.log(data);
+					}
+				})
+
+		}
+	</script>
+</body>
+
+</html>
