@@ -17,7 +17,7 @@
 			}
 
 		}
-		const url = "https://emoji-api.com/emojis?access_key=22386c480db6cb702c2900ac4496f76fb3617996";
+		const url = "https://emoji-api.com/emojis?access_key=82c885b11ecde68df6a7ed1f0ed495ec1fe2ae50";
 
 		fetch(url)
 			.then((res) => {
